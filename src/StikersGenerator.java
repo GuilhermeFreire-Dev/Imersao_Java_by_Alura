@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class StikersGenerator {
 
-    public void create(InputStream inputStream, String nomeDoArquivo) throws IOException {
+    public void create(InputStream inputStream, String fileName) throws IOException {
 
         // Ler imagem
         BufferedImage originalImage = ImageIO.read(inputStream);
@@ -33,6 +33,6 @@ public class StikersGenerator {
         graphics2D.drawString("Topzera", 100, newHeight - 100);
 
         // Salvar nova imagem em um arquivo
-        ImageIO.write(newImage, "png", new File("saida/" + nomeDoArquivo + ".png"));
+        ImageIO.write(newImage, "png", new File("saida/" + fileName + ".png"));
     }
 }

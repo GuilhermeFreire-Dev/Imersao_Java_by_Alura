@@ -9,12 +9,14 @@ public class Main {
         try {
 
             // URL da API do IMDB
-            String imdbUrl = "https://raw.githubusercontent.com/alura-cursos/imersao-java/api/TopMovies.json";
+            //String imdbUrl = "https://raw.githubusercontent.com/alura-cursos/imersao-java/api/TopMovies.json";
+
+            String linguagensUrl = "http://localhost:8080/languages";
 
             var httpDataClient = new HttpDataClient();
-            String json = httpDataClient.searchData(imdbUrl);
+            String json = httpDataClient.searchData(linguagensUrl);
 
-            ContentExtractor contentExtractor = new IMDBContentExtractor();
+            ContentExtractor contentExtractor = new LanguagesContentExtractor() ;
             List<Content> contents = contentExtractor.extractContent(json);
 
             // Gerar os stikers com os postres dos filmes
