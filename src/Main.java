@@ -7,10 +7,6 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-
-            // URL da API do IMDB
-            //String imdbUrl = "https://raw.githubusercontent.com/alura-cursos/imersao-java/api/TopMovies.json";
-
             String linguagensUrl = "http://localhost:8080/languages";
 
             var httpDataClient = new HttpDataClient();
@@ -30,7 +26,7 @@ public class Main {
                 System.out.println(title + "\n");
 
                 InputStream inputStream = new URL(imageUrl).openStream();
-                geradoraDeStikers.create(inputStream, title);
+                geradoraDeStikers.create(inputStream, title, "Olá mundo!");
             }
         }catch (Exception exception){
 

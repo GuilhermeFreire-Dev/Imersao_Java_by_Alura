@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class StikersGenerator {
 
-    public void create(InputStream inputStream, String fileName) throws IOException {
+    public void create(InputStream inputStream, String fileName, String text) throws IOException {
 
         // Ler imagem
         BufferedImage originalImage = ImageIO.read(inputStream);
@@ -15,7 +15,7 @@ public class StikersGenerator {
         // Criar nova imagem com novo tamanho e com fundo transparente
         int width = originalImage.getWidth();
         int height = originalImage.getHeight();
-        int newHeight = height + 200;
+        int newHeight = height + height/2;
 
         var newImage = new BufferedImage(width, newHeight, BufferedImage.TRANSLUCENT);
 
@@ -25,12 +25,17 @@ public class StikersGenerator {
 
         // Personalizar nova imagem
         // Configurar fonte
-        var font = new Font(Font.SANS_SERIF, Font.BOLD, 64);
+        var font = new Font(Font.SANS_SERIF, Font.BOLD, 32);
         graphics2D.setColor(Color.YELLOW);
         graphics2D.setFont(font);
 
         // Escrever frase na nova imagem
-        graphics2D.drawString("Topzera", 100, newHeight - 100);
+
+        if (!text.equals("")){
+            int xPosition = (width/2) - text.length() * 8;
+            int yPosition = newHeight - (newHeight - height)/2;
+            graphics2D.drawString(text, xPosition, yPosition);
+        }
 
         // Salvar nova imagem em um arquivo
         ImageIO.write(newImage, "png", new File("saida/" + fileName + ".png"));
